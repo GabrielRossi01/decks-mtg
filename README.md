@@ -96,3 +96,12 @@ Essa **API RESTful** permite a criação e o gerenciamento de decks de **Magic: 
   "data": "2025-04-17T14:23:00Z"
 }
 ```
+---
+
+# 🗂️ Especificação OpenAPI
+
+[Download do arquivo openapi.json](./openapi.json)
+
+O arquivo anexado acima contém a especificação completa da **Deck API** no padrão **OpenAPI 3.0**. Ele define todas as rotas da aplicação, incluindo métodos HTTP, parâmetros de caminho e de consulta, códigos de status esperados e descrições das funcionalidades.
+
+✅ O arquivo foi validado no [Swagger Editor](https://editor.swagger.io/), garantindo conformidade com o padrão **OpenAPI**.
