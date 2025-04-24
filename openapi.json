@@ -1,0 +1,228 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Deck API",
+    "version": "1.0.0",
+    "description": "API para gerenciamento de decks, cartas, comentários e estatísticas."
+  },
+  "paths": {
+    "/decks": {
+      "get": {
+        "summary": "Listar todos os decks públicos",
+        "responses": {
+          "200": { "description": "Sucesso" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      },
+      "post": {
+        "summary": "Criar novo deck",
+        "responses": {
+          "201": { "description": "Deck criado" },
+          "400": { "description": "Requisição inválida" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      }
+    },
+    "/decks/{id}": {
+      "parameters": [
+        { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+      ],
+      "get": {
+        "summary": "Buscar deck por ID",
+        "responses": {
+          "200": { "description": "Deck encontrado" },
+          "400": { "description": "Requisição inválida" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      },
+      "put": {
+        "summary": "Atualizar deck existente",
+        "responses": {
+          "200": { "description": "Deck atualizado" },
+          "400": { "description": "Requisição inválida" },
+          "404": { "description": "Deck não encontrado" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      },
+      "delete": {
+        "summary": "Excluir deck existente",
+        "responses": {
+          "204": { "description": "Deck excluído com sucesso" },
+          "404": { "description": "Deck não encontrado" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      }
+    },
+    "/cards": {
+      "get": {
+        "summary": "Listar todas as cartas disponíveis",
+        "responses": {
+          "200": { "description": "Sucesso" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      },
+      "post": {
+        "summary": "Cadastrar nova carta",
+        "responses": {
+          "201": { "description": "Carta criada" },
+          "400": { "description": "Requisição inválida" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      }
+    },
+    "/cards/{id}": {
+      "parameters": [
+        { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+      ],
+      "get": {
+        "summary": "Buscar carta por ID",
+        "responses": {
+          "200": { "description": "Sucesso" },
+          "404": { "description": "Carta não encontrada" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      },
+      "put": {
+        "summary": "Atualizar carta existente",
+        "responses": {
+          "200": { "description": "Carta atualizada" },
+          "400": { "description": "Requisição inválida" },
+          "404": { "description": "Carta não encontrada" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      },
+      "delete": {
+        "summary": "Excluir carta",
+        "responses": {
+          "204": { "description": "Carta excluída com sucesso" },
+          "404": { "description": "Carta não encontrada" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      }
+    },
+    "/decks/{id}/stats": {
+      "parameters": [
+        { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+      ],
+      "get": {
+        "summary": "Estatísticas do deck",
+        "responses": {
+          "200": { "description": "Sucesso" },
+          "404": { "description": "Deck não encontrado" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      }
+    },
+    "/decks/user/{userId}": {
+      "parameters": [
+        { "name": "userId", "in": "path", "required": true, "schema": { "type": "string" } }
+      ],
+      "get": {
+        "summary": "Listar decks de um usuário específico",
+        "responses": {
+          "200": { "description": "Sucesso" },
+          "404": { "description": "Usuário não encontrado" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      }
+    },
+    "/decks/{id}/comments": {
+      "parameters": [
+        { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+      ],
+      "get": {
+        "summary": "Listar comentários do deck",
+        "responses": {
+          "200": { "description": "Sucesso" },
+          "404": { "description": "Deck não encontrado" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      },
+      "post": {
+        "summary": "Adicionar comentário ao deck",
+        "responses": {
+          "201": { "description": "Comentário criado" },
+          "400": { "description": "Requisição inválida" },
+          "404": { "description": "Deck não encontrado" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      }
+    },
+    "/decks/search": {
+      "get": {
+        "summary": "Buscar decks por nome ou formato",
+        "parameters": [
+          { "name": "query", "in": "query", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Sucesso" },
+          "400": { "description": "Parâmetro de busca inválido" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      }
+    },
+    "/decks/{id}/cards": {
+      "parameters": [
+        { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+      ],
+      "post": {
+        "summary": "Adicionar cartas ao deck",
+        "responses": {
+          "200": { "description": "Cartas adicionadas com sucesso" },
+          "400": { "description": "Requisição inválida" },
+          "404": { "description": "Deck não encontrado" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      }
+    },
+    "/decks/{id}/cards/{cardId}": {
+      "parameters": [
+        { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } },
+        { "name": "cardId", "in": "path", "required": true, "schema": { "type": "string" } }
+      ],
+      "delete": {
+        "summary": "Remover carta do deck",
+        "responses": {
+          "204": { "description": "Carta removida com sucesso" },
+          "404": { "description": "Carta ou deck não encontrado" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      }
+    },
+    "/decks/{id}/like": {
+      "parameters": [
+        { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+      ],
+      "post": {
+        "summary": "Curtir um deck",
+        "responses": {
+          "200": { "description": "Deck curtido" },
+          "404": { "description": "Deck não encontrado" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      },
+      "delete": {
+        "summary": "Remover curtida do deck",
+        "responses": {
+          "204": { "description": "Curtida removida" },
+          "404": { "description": "Deck não encontrado" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      }
+    },
+    "/decks/{id}/comments/{commentId}": {
+      "parameters": [
+        { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } },
+        { "name": "commentId", "in": "path", "required": true, "schema": { "type": "string" } }
+      ],
+      "delete": {
+        "summary": "Remover comentário",
+        "responses": {
+          "204": { "description": "Comentário removido" },
+          "404": { "description": "Comentário não encontrado" },
+          "500": { "description": "Erro interno do servidor" }
+        }
+      }
+    }
+  }
+}
