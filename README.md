@@ -38,40 +38,46 @@ Essa **API RESTful** permite a criação e o gerenciamento de decks de **Magic: 
 ## DeckDTO
 
 ```json
-DeckDTO {
-  "id": integer,
-  "nome": string,
-  "formato": string,
-  "descricao": string,
-  "cartas": [
-    {
-      "id": integer,
-      "nome": string,
-      "tipo": string,
-      "cor": string,
-      "custoMana": string,
-      "quantidade": integer
-    }
-  ],
-  "dataCriacao": string
+{
+  "DeckDTO": {
+    "id": "integer",
+    "nome": "string",
+    "formato": "string",
+    "descricao": "string",
+    "cartas": [
+      {
+        "id": "integer",
+        "nome": "string",
+        "tipo": "string",
+        "cor": "string",
+        "custoMana": "string",
+        "quantidade": "integer"
+      }
+    ],
+    "dataCriacao": "string"
+  }
 }
 ```
 
 ## CardDTO
 
 ```json
-CardDTO {
-  "id": integer,
-  "nome": string,
-  "tipo": string,
-  "subtipo": string,
-  "supertipo": string,
-  "cor": string,
-  "custoMana": string,
-  "habilidades": [string],
-  "textoDoSabor": string,
-  "poder": integer,
-  "resistencia": integer
+{
+  "CardDTO": {
+    "id": "integer",
+    "nome": "string",
+    "tipo": "string",
+    "subtipo": "string",
+    "supertipo": "string",
+    "cor": "string",
+    "custoMana": "string",
+    "habilidades": [
+      "string"
+    ],
+    "textoDoSabor": "string",
+    "poder": "integer",
+    "resistencia": "integer"
+  }
 }
 ```
 
