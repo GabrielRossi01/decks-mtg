@@ -1,0 +1,472 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Magic DeckBuilder API",
+    "description": "API para gerenciamento de decks e cartas de Magic: The Gathering.",
+    "version": "1.1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Servidor local"
+    }
+  ],
+  "paths": {
+    "/cards": {
+      "get": {
+        "summary": "Recupera todas as cartas",
+        "responses": {
+          "200": {
+            "description": "Lista de cartas"
+          },
+          "500": {
+            "description": "Erro interno"
+          }
+        }
+      },
+      "post": {
+        "summary": "Adiciona uma nova carta",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Carta criada"
+          },
+          "400": {
+            "description": "Requisição inválida"
+          },
+          "500": {
+            "description": "Erro interno"
+          }
+        }
+      }
+    },
+    "/cards/{id}": {
+      "get": {
+        "summary": "Recupera uma carta específica",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Carta encontrada"
+          },
+          "404": {
+            "description": "Carta não encontrada"
+          },
+          "500": {
+            "description": "Erro interno"
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualiza uma carta específica",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Carta atualizada"
+          },
+          "400": {
+            "description": "Requisição inválida"
+          },
+          "404": {
+            "description": "Carta não encontrada"
+          },
+          "500": {
+            "description": "Erro interno"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deleta uma carta específica",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Carta deletada"
+          },
+          "404": {
+            "description": "Carta não encontrada"
+          },
+          "500": {
+            "description": "Erro interno"
+          }
+        }
+      }
+    },
+    "/cards/search": {
+      "get": {
+        "summary": "Busca cartas por nome ou descrição",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Resultado da busca"
+          },
+          "400": {
+            "description": "Parâmetros inválidos"
+          },
+          "500": {
+            "description": "Erro interno"
+          }
+        }
+      }
+    },
+    "/decks": {
+      "get": {
+        "summary": "Lista todos os decks",
+        "responses": {
+          "200": {
+            "description": "Lista de decks"
+          },
+          "500": {
+            "description": "Erro interno"
+          }
+        }
+      },
+      "post": {
+        "summary": "Cria um novo deck",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeckDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Deck criado"
+          },
+          "400": {
+            "description": "Requisição inválida"
+          },
+          "500": {
+            "description": "Erro interno"
+          }
+        }
+      }
+    },
+    "/decks/{id}": {
+      "get": {
+        "summary": "Recupera um deck específico",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deck encontrado"
+          },
+          "404": {
+            "description": "Deck não encontrado"
+          },
+          "500": {
+            "description": "Erro interno"
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualiza um deck existente",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeckDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deck atualizado"
+          },
+          "400": {
+            "description": "Requisição inválida"
+          },
+          "404": {
+            "description": "Deck não encontrado"
+          },
+          "500": {
+            "description": "Erro interno"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove um deck específico",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Deck deletado"
+          },
+          "404": {
+            "description": "Deck não encontrado"
+          },
+          "500": {
+            "description": "Erro interno"
+          }
+        }
+      }
+    },
+    "/decks/{deckId}/cards": {
+      "post": {
+        "summary": "Adiciona uma carta ao deck",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "deckId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cardId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "cardId"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Carta adicionada ao deck"
+          },
+          "400": {
+            "description": "Requisição inválida"
+          },
+          "404": {
+            "description": "Deck ou carta não encontrada"
+          },
+          "500": {
+            "description": "Erro interno"
+          }
+        }
+      },
+      "get": {
+        "summary": "Lista cartas de um deck",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "deckId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cartas do deck"
+          },
+          "404": {
+            "description": "Deck não encontrado"
+          },
+          "500": {
+            "description": "Erro interno"
+          }
+        }
+      }
+    },
+    "/decks/{deckId}/cards/{cardId}": {
+      "delete": {
+        "summary": "Remove uma carta de um deck",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "deckId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "cardId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Carta removida do deck"
+          },
+          "404": {
+            "description": "Deck ou carta não encontrada"
+          },
+          "500": {
+            "description": "Erro interno"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CardDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subType": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "superType": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "manaCost": {
+            "type": "string"
+          },
+          "color": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "abilities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "flavorText": {
+            "type": "string"
+          },
+          "power": {
+            "type": "integer"
+          },
+          "toughness": {
+            "type": "integer"
+          }
+        }
+      },
+      "DeckDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "cards": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
