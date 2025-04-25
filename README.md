@@ -38,64 +38,43 @@ Essa **API RESTful** permite a criação e o gerenciamento de decks de **Magic: 
 ## DeckDTO
 
 ```json
-{
-  "id": "7weN1G2zW0KCMDVv75VDmQ",
-  "nome": "Nekusar Deck",
-  "formato": "Commander",
-  "descricao": "Deck centrado em Nekusar, the Mindrazer, utilizando efeitos de 'wheel' para causar dano aos oponentes enquanto acelera sua própria vantagem de cartas.",
+DeckDTO {
+  "id": integer,
+  "nome": string,
+  "formato": string,
+  "descricao": string,
   "cartas": [
     {
-      "id": 1,
-      "nome": "Nekusar, the Mindrazer",
-      "tipo": "Criatura Lendária",
-      "cor": "Azul/Preto/Vermelho",
-      "custoMana": "2UBR",
-      "quantidade": 1
-    },
-    {
-      "id": 3,
-      "nome": "Windfall",
-      "tipo": "Feitiço",
-      "cor": "Azul",
-      "custoMana": "2U",
-      "quantidade": 1
-    },
-    {
-      "id": 4,
-      "nome": "Teferi's Puzzle Box",
-      "tipo": "Artefato",
-      "cor": "Incolor",
-      "custoMana": "4",
-      "quantidade": 1
-    },
+      "id": integer,
+      "nome": string,
+      "tipo": string,
+      "cor": string,
+      "custoMana": string,
+      "quantidade": integer
+    }
   ],
+  "dataCriacao": string
 }
 ```
 
 ## CardDTO
 
 ```json
-{
-  "id": 3,
-  "nome": "Windfall",
-  "tipo": "Feitiço",
-  "cor": "Azul",
-  "custoMana": "2U",
-  "descricao": "Cada jogador descarta sua mão e compra o mesmo número de cartas que o maior número de cartas descartadas desta forma."
+CardDTO {
+  "id": integer,
+  "nome": string,
+  "tipo": string,
+  "subtipo": string,
+  "supertipo": string,
+  "cor": string,
+  "custoMana": string,
+  "habilidades": [string],
+  "textoDoSabor": string,
+  "poder": integer,
+  "resistencia": integer
 }
 ```
 
-## CommentDTO
-
-```json
-{
-  "id": 7,
-  "deckId": 1,
-  "usuario": "gabriel_rossi",
-  "comentario": "Esse deck é ótimo pra partidas rápidas!",
-  "data": "2025-04-17T14:23:00Z"
-}
-```
 ---
 
 # 🗂️ Especificação OpenAPI
